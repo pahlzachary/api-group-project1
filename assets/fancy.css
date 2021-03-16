@@ -1,11 +1,13 @@
 
   #map {
-    height: 400px;
-    width: 100%;
+    height: 20%;
+    width: 20%;
 
   }
-  /* html, body {
+  html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
-  } */
+  }
+
