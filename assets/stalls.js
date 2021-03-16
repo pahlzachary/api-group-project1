@@ -35,7 +35,7 @@ function gifSearch() {
 
     .then(function(response) {
       var gifImg = document.createElement("img");
-      gifImg.className = "gif-used";
+      gifImg.setAttribute('id', 'gif-used');
       gifImg.setAttribute("src", response.data[0].images.fixed_height.url);
       //fixed_height makes 200x200
       //fixed_height_small makes 100x100
@@ -49,7 +49,7 @@ function gifSearch() {
 //as info window's content (see TODO comment below)
 function finalPost() {
   event.preventDefault();
-  var gifUsed = document.getElementsByClassName('gif-used');
+  var gifUsed = document.getElementById('gif-used').getAttribute("src");
   var message = document.getElementById('message').value;
   var coordinates = [];
 
@@ -68,21 +68,24 @@ function finalPost() {
   };
   console.log(postInfoObj);
   savePost(postInfoObj);
-  testLoad();
+  testLoad(); //test function, will be deleted in final
 }
 
 function savePost(postInfoObj) {
   posts.push(postInfoObj);
-  console.log(postInfoObj);
   localStorage.setItem("posts", JSON.stringify(posts));
 }
 
+//test function, will be deleted in final
 function testLoad() {
   var savedPosts = localStorage.getItem("posts");
   savedPosts = JSON.parse(savedPosts);
-  console.log(savedPosts);
-  var testDiv = document.createElement("div");
-  testDiv.appendChild(savedPosts[0]);
+  
+  var imgEl = document.createElement("img");
+  imgEl.setAttribute('src', savedPosts[0].gif)
+
+  var testDiv = document.querySelector("#gif-show");
+  testDiv.appendChild(imgEl);
 }
 
 //in load localstorage function, remake marker then set content of infowindow  
@@ -98,7 +101,8 @@ function loadPosts() {
 
   //loop thru savedPosts array of objects and remake markers and infowindows
   for (var i=0; i<savedPosts.length; i++) {
-    markerinfowindowfunct(savedPosts[i]);
+    //within function: use savedPosts[i].gif | .location | .text
+    markerinfowindowfunct(savedPosts[i]); 
   }
 }
 
