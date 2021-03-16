@@ -9,4 +9,61 @@ function initMap() {
   console.log(map)
 }
 
+// GIPHY code below:
+//variables
+var apiKey = "1XcvMXHREHIKPQWHGafuJOfKR7dUJfee"; 
+var searchFormEl = document.querySelector("#search-form");
+var searchButtonEl = document.querySelector("#search-button");
+var gifDisplayEl = document.querySelector("#gif-display");
 
+var postingFormEl = document.querySelector("#posting-form");
+
+//use this function when making info windows on google maps API
+function gifSearch() {
+  event.preventDefault();
+  var searchTerm = document.querySelector("#search-input").value;
+  
+  fetch(
+    "https://api.giphy.com/v1/gifs/search?q=" + 
+    searchTerm + 
+    "&api_key=" + 
+    apiKey + 
+    "&limit=1"
+  )
+    .then(function(response) {
+      return response.json();
+    })
+
+    .then(function(response) {
+      console.log(response.data[0]);
+
+      var gifImg = document.createElement("img");
+      gifImg.setAttribute("src", response.data[0].images.fixed_height.url);
+      //fixed_height makes 200x200
+      //fixed_height_small makes 100x100
+
+      gifDisplayEl.innerHTML =''; 
+      gifDisplayEl.appendChild(gifImg);
+    })
+
+  searchFormEl.reset();
+}
+
+//This function gets text and GIF entered and sets them
+//as info window's content (see TODO comment below)
+function finalPost() {
+  event.preventDefault();
+  var message = document.getElementById('message').value;
+  var gif = gifDisplayEl;
+  
+  //for testing purposes
+  console.log(message); 
+  console.log(gif);
+
+  //TODO: call markerAdd function from GoogleMaps API to add marker and set these 
+  //vars into the info window
+
+}
+
+searchFormEl.addEventListener('submit', gifSearch);
+postingFormEl.addEventListener('submit', finalPost);
