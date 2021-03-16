@@ -14,3 +14,12 @@ function initMap(){
   }
   var map = new google.maps.Map(document.getElementById("map"). options);
 }
+
+//vjcxklzvczkvjzlvjxclzvjx;zvjclxz
+function initMapjustcuz(){
+  var options = {
+    zoom:8,
+    center: {lat: 33.428, lng: -111.936}
+  }
+  var map = new google.maps.Map(document.getElementById("map"). options);
+}
