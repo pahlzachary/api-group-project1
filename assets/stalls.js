@@ -1,13 +1,60 @@
-
+//map stuff 
 var map;
 
+// this is what calls the map to existance 
 function initMap() {
+  //map options 
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.428, lng: -111.936 },
     zoom: 8,
   });
-  console.log(map)
+
+  //listen for click 
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+ });
+ 
+ //function to place the marker
+ function placeMarker(location) {
+     var marker = new google.maps.Marker({
+         position: location, 
+         map: map
+     });
+ }
+
+ // This is the string that SHOULD add content but it does not 
+ var contentString = 
+ '<div id= "content">' +
+ '<div id="siteNotice">' +
+ "</div>" +
+ '<h1 id="firstHeading" class="firstHeading">I pooped </h1>' +
+ '<div id="bodyContent">' +
+ "<p>, this is where we put poop text </p>" +
+ "</div>" +
+"</div>";
+
+//this is the info window 
+var infowindow = new google.maps.InfoWondow({
+  content: contentString,
+});
+
+// this is the listener  for a click to open the map marker aslo no work 
+marker.addListener("click",() => {
+  infowindow.open(map, marker);
+});
+
+ 
+//  //listen for click on marker
+//  var infowindow =  google.maps.event.addListener(map, 'click', function(event){
+//    infowindow.content 
+//  })
+
+
+
+ 
 }
+
+
 
 // GIPHY code below:
 //variables
