@@ -23,3 +23,7 @@ function initMapjustcuz(){
   }
   var map = new google.maps.Map(document.getElementById("map"). options);
 }
+
+function zachsFunction () {
+  alert("this does nothing");
+}
