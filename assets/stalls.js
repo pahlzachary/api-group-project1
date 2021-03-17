@@ -3,6 +3,7 @@ var map;
 
 // this is what calls the map to existance 
 function initMap() {
+
   //map options 
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.428, lng: -111.936 },
@@ -16,10 +17,14 @@ function initMap() {
  
  //function to place the marker
  function placeMarker(location) {
-     var marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
          position: location, 
          map: map
-     });
+      });
+      // this is the listener  for a click to open the map marker aslo no work 
+      marker.addListener("click",() => {
+        infowindow.open(map, marker);
+      });
  }
 
  // This is the string that SHOULD add content but it does not 
@@ -38,10 +43,7 @@ var infowindow = new google.maps.InfoWindow({
   content: contentString,
 });
 
-// this is the listener  for a click to open the map marker aslo no work 
-marker.addListener("click",() => {
-  infowindow.open(map, marker);
-});
+
 
 //  // google.maps.event.addListener(map, 'click', function(event) {
 //   placeMarker(event.latLng);
@@ -51,9 +53,6 @@ marker.addListener("click",() => {
 //  var infowindow =  google.maps.event.addListener(map, 'click', function(event){
 //    infowindow.content 
 //  })
-
-
-
  
 }
 
