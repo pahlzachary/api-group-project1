@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./fancy.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/images/poop-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/fancy.css" />
     <title>Bathroom Wall 💩</title>
-</head>
-<body>
+  </head>
+  <body>
     <!--header  -->
     <header>
-        <h1>Stalls & Walls: Poop and post</h1>       
+      <h1>Stalls & Walls: Poop and post</h1>
+      <h2>Like twitter for the shitter</h2>
     </header>
     <!-- header end -->
     <!-- map -->
-    <div id="map" class="map"> Add google maps here </div>
+    <div class="box"></div>
+    <div id="map" class="map">Add google maps here</div>
     <!-- map end -->
-    <!-- start of write-->
-    <textarea> Whatcha thinking about? </textarea>
-    <!-- end of write-->
     <!-- start of search -->
-   <form>
-       <label> search gif</label>
-       <input name="poop" type="text" autofocus="true" class="form-input"/>
-       <button> search</button>
-   </form>
- <!-- end search secton-->
+    <form id="search-form">
+      <label>Search GIF</label>
+      <input
+        name="poop"
+        type="text"
+        autofocus="true"
+        class="form-input"
+        id="search-input"
+      />
+      <button id="search-button" type="submit">search</button>
+    </form>
+    <!-- end search secton-->
 
-    <!--"your posts"-->
-    <section>
-        <h1>Your Posts here:</h1>
-    </section>
+    <!--Viewer div to see what gif you'll be posting-->
+    <div id="gif-display"></div>
 
- <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOdXcNgQbXd-CHpd9Wlc9KeTpVb40LH5A&callback=initMap">
-</script>
- <script src="./assets/stalls.jss"></script>  
-</body>
+    <!--Test div for testLoad() function-->
+    <div id="gif-show"></div>
+
+    <form id="posting-form">
+        <!-- start of write-->
+        <textarea id="message"> I came, I pooped, I left. </textarea>
+        <!-- end of write-->
+
+        <button id="post-button" type="submit">Drop The Duece</button>
+    </form>
+
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOdXcNgQbXd-CHpd9Wlc9KeTpVb40LH5A&callback=initMap"
+    ></script>
+    <script src="./assets/stalls.js"></script>
+  </body>
 </html>

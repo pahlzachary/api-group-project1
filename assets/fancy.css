@@ -1,11 +1,14 @@
+/* These are import this is how we get the map to display on the page */
 
-  #map {
-    height: 400px;
-    width: 100%;
+#map {
+  height: 50%;
+  width: 85%;
 
-  }
-  /* html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  } */
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
