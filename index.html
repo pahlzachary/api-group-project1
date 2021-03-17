@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    text
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Foundation Compressed CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./assets/images/poop-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/fancy.css" />
+    <title>Bathroom Wall 💩</title>
+  </head>
+  <body>
+    <!--header  -->
+    <div class="align-center grid-x grid-padding-y grid-padding-x"> 
+      <div class="cell auto">
+    <header>
+      <h1 class= >Stalls & Walls: Poop and post</h1>
+      <h2 class="subheader">Like twitter for the shitter</h2>
+    </header>
+  </div>
+  </div>
+
+    <!-- header end -->
+    <!-- map -->
+    <div class="box"></div>
+    <div id="map" class="map">Add google maps here</div>
+    <!-- map end -->
+
+     <!-- start of search -->
+    <div class="grid-x grid-padding-y grid-padding-x">
+      <div class="cell auto">
+    <form id="search-form">
+      <label>Search GIF</label>
+      <input
+        name="poop"
+        type="text"
+        autofocus="true"
+        class="form-input"
+        id="search-input"
+      />
+      <button id="search-button" type="submit" class="button radius bordered shadow primary large">search</button>
+    </form>
+    <!-- end search secton-->
+
+    <!--Viewer div to see what gif you'll be posting--> 
+    <div id="gif-display"></div>
+
+    <!--Test div for testLoad() function-->
+    <div id="gif-show"></div>
+
+    <form id="posting-form">
+        <!-- start of write-->
+        <textarea id="message"> I came, I pooped, I left. </textarea>
+        <!-- end of write-->
+    </form>
+  </div>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOdXcNgQbXd-CHpd9Wlc9KeTpVb40LH5A&callback=initMap"
+    ></script>
+    <script src="./assets/stalls.js"></script>
+    <!-- Compressed JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+</div>
+</div>
 </body>
 </html>
