@@ -34,7 +34,7 @@ function initMap() {
 "</div>";
 
 //this is the info window 
-var infowindow = new google.maps.InfoWondow({
+var infowindow = new google.maps.InfoWindow({
   content: contentString,
 });
 
@@ -43,7 +43,10 @@ marker.addListener("click",() => {
   infowindow.open(map, marker);
 });
 
- 
+//  // google.maps.event.addListener(map, 'click', function(event) {
+//   placeMarker(event.latLng);
+// });
+
 //  //listen for click on marker
 //  var infowindow =  google.maps.event.addListener(map, 'click', function(event){
 //    infowindow.content 
