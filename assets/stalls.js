@@ -34,7 +34,7 @@ function initMap() {
  "</div>" +
  '<h1 id="firstHeading" class="firstHeading">I pooped </h1>' +
  '<div id="bodyContent">' +
- "<p> finalPost() </p>" +
+ "<p> test </p>" +
  "</div>" +
 "</div>";
 
