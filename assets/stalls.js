@@ -16,34 +16,42 @@ function initMap() {
  });
  
  //function to place the marker
- function placeMarker(location) {
-      var marker = new google.maps.Marker({
-         position: location, 
-         map: map
-      });
-      // this is the listener  for a click to open the map marker 
-      marker.addListener("click",() => {
-        infowindow.open(map, marker);
-        finalPost();
-      });
- }
-
+ 
  // This is content id should make them editiable?   
  var contentString = contentStringGlobal;
-//  '<div id= "content">' +
-//  '<div id="siteNotice">' +
-//  "</div>" +
-//  '<h1 id="firstHeading" class="firstHeading">I pooped </h1>' +
-//  '<div id="bodyContent">' +
-//  "<p> finalPost() </p>" +
-//  "</div>" +
-// "</div>";
-
-//this is the info window 
-var infowindow = new google.maps.InfoWindow({
-  content: contentString,
-});
-
+ //  '<div id= "content">' +
+ //  '<div id="siteNotice">' +
+ //  "</div>" +
+ //  '<h1 id="firstHeading" class="firstHeading">I pooped </h1>' +
+ //  '<div id="bodyContent">' +
+ //  "<p> finalPost() </p>" +
+ //  "</div>" +
+ // "</div>";
+ 
+ //this is the info window 
+ var infowindow = new google.maps.InfoWindow({
+   content: contentString,
+  });
+  
+  function placeMarker(location) {
+       var marker = new google.maps.Marker({
+          position: location, 
+          map: map
+       });
+       // this is the listener  for a click to open the map marker 
+       marker.addListener("click",() => {
+         infowindow.open(map, marker);
+       });
+ 
+       //this is the listner for a dblclick to transfer gif and text to contentString
+       marker.addListener('dblclick',() => {
+         finalPost();
+         infowindow.setContent(contentStringGlobal);
+         infowindow.open(map, marker);        
+         //CALL SAVE FUNCTION HERE AND MODIFY SAVE FUNCTION SO THAT IT STORES 'location'
+         //TODO: can use posts array to store 
+       });
+  }
 
 
 //  // google.maps.event.addListener(map, 'click', function(event) {
@@ -63,7 +71,7 @@ var searchFormEl = document.querySelector("#search-form");
 var searchButtonEl = document.querySelector("#search-button");
 var postingFormEl = document.querySelector("#posting-form");
 var gifDisplayEl = document.querySelector("#gif-display");
-var contentStringGlobal;
+var contentStringGlobal = "";
 
 var posts = [];
 
@@ -116,18 +124,7 @@ function finalPost() {
   console.log(postInfoObj);
   savePost(postInfoObj);
 
-  var infoWindowDiv = document.createElement("div");
-
-  var imgEl = document.createElement("img");
-  imgEl.setAttribute('src', gifUsed);
-
-  var textEl = document.createElement("p");
-  textEl.appendChild(message);
-
-  infoWindowDiv.appendChild(imgEl);
-  infoWindowDiv.appendChild(textEl);
-
-  contentStringGlobal = infoWindowDiv; 
+  contentStringGlobal = "<img src='" + gifUsed + "'></img><p>" + message + "</p>";
     
   // testLoad(); //test function, will be deleted in final
 }
