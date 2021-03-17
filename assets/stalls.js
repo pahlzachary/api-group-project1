@@ -24,6 +24,7 @@ function initMap() {
       // this is the listener  for a click to open the map marker 
       marker.addListener("click",() => {
         infowindow.open(map, marker);
+        finalPost();
       });
  }
 
@@ -62,6 +63,7 @@ var searchFormEl = document.querySelector("#search-form");
 var searchButtonEl = document.querySelector("#search-button");
 var postingFormEl = document.querySelector("#posting-form");
 var gifDisplayEl = document.querySelector("#gif-display");
+var contentStringGlobal;
 
 var posts = [];
 
@@ -98,8 +100,7 @@ function finalPost() {
   event.preventDefault();
   var gifUsed = document.getElementById('gif-used').getAttribute("src");
   var message = document.getElementById('message').value;
-  var coordinates = [];
-
+  
   //for testing purposes
   console.log(gifUsed);
   console.log(message); 
@@ -111,11 +112,24 @@ function finalPost() {
   var postInfoObj = {
     gif: gifUsed, 
     text: message, 
-    location: coordinates,
   };
   console.log(postInfoObj);
   savePost(postInfoObj);
-  testLoad(); //test function, will be deleted in final
+
+  var infoWindowDiv = document.createElement("div");
+
+  var imgEl = document.createElement("img");
+  imgEl.setAttribute('src', gifUsed);
+
+  var textEl = document.createElement("p");
+  textEl.appendChild(message);
+
+  infoWindowDiv.appendChild(imgEl);
+  infoWindowDiv.appendChild(textEl);
+
+  contentStringGlobal = infoWindowDiv; 
+    
+  // testLoad(); //test function, will be deleted in final
 }
 
 function savePost(postInfoObj) {
