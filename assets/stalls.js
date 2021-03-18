@@ -99,7 +99,7 @@ function finalPost() {
   // savePost(postInfoObj);
 
   contentStringGlobal =
-    "<img src='" + gifUsed + "'></img><p>" + message + "</p>";
+    "<img src='" + gifUsed + "'></img><p class='info-box'>" + message + "</p>";
 }
 
 // function savePost(postInfoObj) {
