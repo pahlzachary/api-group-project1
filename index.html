@@ -15,12 +15,11 @@
     <div class="align-center grid-x grid-padding-y grid-padding-x"> 
       <div class="cell auto">
     <header>
-      <h1 class= >Stalls & Walls: Poop and post</h1>
-      <h2 class="subheader">Like twitter for the shitter</h2>
+      <h1>Stalls & Walls: Poop and post</h1>
+      <h2>Like twitter for the shitter</h2>
     </header>
   </div>
   </div>
-
     <!-- header end -->
     <!-- map -->
     <div class="box"></div>
@@ -30,28 +29,32 @@
      <!-- start of search -->
     <div class="grid-x grid-padding-y grid-padding-x">
       <div class="cell auto">
-    <form id="search-form">
-      <label>Search GIF</label>
-      <input
-        name="poop"
-        type="text"
-        autofocus="true"
-        class="form-input"
-        id="search-input"
+    <form class= "cell medium-6 large-8 " id="search-form">
+      <div class="grid-x">
+
+      <!-- <label>Search GIF</label>   -->
+      
+      <input name="poop" type="text" autofocus="true" class="form-input cell medium-6 large-8"
+        id="search-input" 
       />
-      <button id="search-button" type="submit" class="button radius bordered shadow primary large">search</button>
+      <button id="search-button" type="submit" class=" cell medium-6 large-4 button radius bordered shadow primary small">search</button>
+
     </form>
+  </div>
+    
     <!-- end search secton-->
 
     <!--Viewer div to see what gif you'll be posting--> 
-    <div id="gif-display"></div>
+    <div class="grid-x">
+    <div id="gif-display">
 
     <!--Test div for testLoad() function-->
-    <div id="gif-show"></div>
+    <div id="gif-show" class ="cell small-6"></div>
 
-    <form id="posting-form">
+    <form id="posting-form" class="cell small-6">
         <!-- start of write-->
         <textarea id="message"> I came, I pooped, I left. </textarea>
+      </div>
         <!-- end of write-->
     </form>
   </div>
