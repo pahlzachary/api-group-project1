@@ -1,5 +1,7 @@
 //map stuff
 var map;
+var myLocation = window.localStorage;
+var mapArray = [] 
 
 // this is what calls the map to existance
 function initMap() {
@@ -11,9 +13,34 @@ function initMap() {
 
   //listen for click
   google.maps.event.addListener(map, "click", function (event) {
-    placeMarker(event.latLng);
+    console.log(placeMarker(event.latLng));
+    // if (myLocation) {
+    //   var currentLocation = myLocation.getItem("locationlatLang");
+    // var locationList = currentLocation.concat(event.latLng);
+    // console.log(locationList);
+    // } 
+    
+    myLocation.setItem("locationlatLang", event.latLng);
+    var currentLoc = myLocation.getItem("locationlatLang");
+    var locationList = currentLoc.substring(1, currentLoc.length -1).split(", ")
+    // var newMapArray = mapArray.push(locationList); 
+    mapArray.push(locationList);
+    poopString(locationList)
   });
 
+function poopString(locationList){
+  var nugget = {
+    loction: locationList,
+    message: contentStringGlobal,
+  }
+
+var allContent = JSON.parse(localStorage.getItem("disPoop")) || []
+console.log(allContent)
+  allContent.push(nugget);
+  localStorage.setItem("disPoop", JSON.stringify(allContent))
+};
+
+  //this gets all the content in to the map gif and message
   var contentString = contentStringGlobal;
 
   function placeMarker(location) {
@@ -30,12 +57,25 @@ function initMap() {
       finalPost();
       infowindow.setContent(contentStringGlobal);
       infowindow.open(map, marker);
+      // console.log(contentStringGlobal);
+      console.log(marker.position);
+      // let poopSave = {
+      //   contentString: contentStringGlobal,
+      //   markerLocation: marker.anchorPoint
+      // };
+
+
     });
       //CALL SAVE FUNCTION HERE AND MODIFY SAVE FUNCTION SO THAT IT STORES 'location'
       //TODO: can use posts array to store
       //could use marker.getPosition to return LatLng
 
   }
+  // placeMarker({
+  //   lat: 33.74375168366952, 
+  //   lng: -112.68856347656249
+
+  //   }); 
 
 }
 
@@ -101,6 +141,8 @@ function finalPost() {
   contentStringGlobal =
     "<img src='" + gifUsed + "'></img><p>" + message + "</p>";
 }
+
+
 
 // function savePost(postInfoObj) {
 //   posts.push(postInfoObj);
