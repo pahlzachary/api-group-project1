@@ -31,4 +31,6 @@ GitHub repo: https://github.com/pahlzachary/api-group-project1
 Concept to start with - we ended moving to a stacked format to be more mobil compatible 
 ![image](https://user-images.githubusercontent.com/77704439/111881471-b8373b00-896d-11eb-9d28-6e02e577ffd1.png)
 
-** add finaly image here** 
+Final product image below.  We are still having issues with the local storage.  The infrmation is displayed in application but we are not able to get the pins to persist
+stallsWallsDemo.JPG
+
