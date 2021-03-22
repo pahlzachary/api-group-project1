@@ -1,7 +1,7 @@
 //map stuff
 var map;
 var myLocation = window.localStorage;
-var mapArray = [] 
+var mapArray = []
 
 // this is what calls the map to existance
 function initMap() {
@@ -11,34 +11,44 @@ function initMap() {
     zoom: 8,
   });
 
-  //listen for click
+  //listen for click saving info in to local storage 
   google.maps.event.addListener(map, "click", function (event) {
     console.log(placeMarker(event.latLng));
-    // if (myLocation) {
-    //   var currentLocation = myLocation.getItem("locationlatLang");
-    // var locationList = currentLocation.concat(event.latLng);
-    // console.log(locationList);
-    // } 
-    
+
     myLocation.setItem("locationlatLang", event.latLng);
     var currentLoc = myLocation.getItem("locationlatLang");
-    var locationList = currentLoc.substring(1, currentLoc.length -1).split(", ")
+    var locationList = currentLoc.substring(1, currentLoc.length - 1).split(", ")
     // var newMapArray = mapArray.push(locationList); 
-    mapArray.push(locationList);
-    poopString(locationList)
+    mapArray.push(currentLoc);
+    myLocation.setItem("locationObjects", JSON.stringify(mapArray))
+    poopString(locationList);
   });
 
-function poopString(locationList){
-  var nugget = {
-    loction: locationList,
-    message: contentStringGlobal,
-  }
+  //craeting the array of data to be saved on local storage
+  function poopString(locationList) {
+    var nugget = {
+      location: locationList,
+      message: contentStringGlobal,
+    }
+    var allContent = JSON.parse(localStorage.getItem("disPoop")) || []
+    console.log(allContent)
+    allContent.push(nugget);
+    localStorage.setItem("disPoop", JSON.stringify(allContent))
+    //is there where I  set the for loop? 
 
-var allContent = JSON.parse(localStorage.getItem("disPoop")) || []
-console.log(allContent)
-  allContent.push(nugget);
-  localStorage.setItem("disPoop", JSON.stringify(allContent))
-};
+    
+  };
+
+  function loadHistory() {
+    var allContent = JSON.parse(localStorage.getItem("disPoop")) || []
+    var history = JSON.parse(localStorage.getItem("locationObjects")) || []
+    for(var i = 0; i < history.length; i++){
+      console.log(history[i]);
+      var myLocation = history[i].split(",");
+      var marker = new google.maps.Marker({position: new google.maps.latLng(myLocation[0],myLocation[1]),map: map});
+      // placeMarker(history[i]);
+    };
+  }
 
   //this gets all the content in to the map gif and message
   var contentString = contentStringGlobal;
@@ -57,25 +67,14 @@ console.log(allContent)
       finalPost();
       infowindow.setContent(contentStringGlobal);
       infowindow.open(map, marker);
-      // console.log(contentStringGlobal);
-      console.log(marker.position);
-      // let poopSave = {
-      //   contentString: contentStringGlobal,
-      //   markerLocation: marker.anchorPoint
-      // };
-
+      // console.log(marker.position);
 
     });
-      //CALL SAVE FUNCTION HERE AND MODIFY SAVE FUNCTION SO THAT IT STORES 'location'
-      //TODO: can use posts array to store
-      //could use marker.getPosition to return LatLng
+
 
   }
-  // placeMarker({
-  //   lat: 33.74375168366952, 
-  //   lng: -112.68856347656249
 
-  //   }); 
+  loadHistory();
 
 }
 
@@ -95,10 +94,10 @@ function gifSearch() {
   var searchTerm = document.querySelector("#search-input").value;
   fetch(
     "https://api.giphy.com/v1/gifs/search?q=" +
-      searchTerm +
-      "&api_key=" +
-      apiKey +
-      "&limit=1"
+    searchTerm +
+    "&api_key=" +
+    apiKey +
+    "&limit=1"
   )
     .then(function (response) {
       return response.json();
@@ -169,5 +168,7 @@ function finalPost() {
 //     markerinfowindowfunct(savedPosts[i]);
 //   }
 // }
+
+
 
 searchFormEl.addEventListener("submit", gifSearch);
